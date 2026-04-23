@@ -3,6 +3,9 @@
 A standalone, local-first frontend for YouTube. This project allows managing subscriptions, feeds, and viewing content without external tracking or a Google account.
 Looks like old Youtube and the main design reference - Play.ukr.net video portal. Looks like generic 2000s videohosting.
 
+Was created as a part of [TuuDay](https://github.com/yuvisite/Tuuday) portal, but it was separated. 
+
+
 [![image.png](https://i.postimg.cc/fTPpC4NV/image.png)](https://postimg.cc/tYhBRM7b)
 
 Avaible on Russian, Ukrainian and English.
