@@ -102,4 +102,4 @@ YOUTUBE_API_KEY="your_api_key" node video-server.js
 - `data/`: Directory where `video-data.json` is automatically created and maintained.
 
 ## License
-MIT
+This project is licensed under the MIT License. See the LICENSE file for details.
