@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>&#1055;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; - Videoalta</title>
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="stylesheet" href="video.css">
+</head>
+<body data-page="watch">
+    <script>try{var t=localStorage.getItem('tuuday-theme')||localStorage.getItem('tuuday-video-theme')||'';if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t==='dark')document.body.classList.add('theme-dark');document.body.dataset.theme=t==='dark'?'dark':'light';}catch(e){}</script>
+    <div class="portal-shell">
+        <header class="portal-head">
+            <div class="portal-topline">
+                <a class="brand-badge" href="index.html">Videoalta</a>
+                <nav class="portal-nav">
+                    <a href="index.html">&#1074;&#1080;&#1076;&#1077;&#1086;</a>
+                    <a href="search.html">&#1087;&#1086;&#1080;&#1089;&#1082;</a>
+                    <a href="watch.html" class="is-active">&#1087;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088;</a>
+                </nav>
+                <div class="portal-head-actions">
+                    <button class="small-action" type="button" id="utility-toggle">Настройки</button>
+                </div>
+            </div>
+
+            <div class="portal-searchline">
+                <form action="search.html" class="portal-searchform">
+                    <input type="text" name="q" id="mast-search-input" placeholder="&#1087;&#1086;&#1080;&#1089;&#1082; &#1074;&#1080;&#1076;&#1077;&#1086;">
+                    <button type="submit">&#1055;&#1086;&#1080;&#1089;&#1082;</button>
+                </form>
+                <div class="portal-links">
+                    <a href="index.html">&#1075;&#1083;&#1072;&#1074;&#1085;&#1072;&#1103;</a>
+                    <a href="subscriptions.html">&#1082;&#1072;&#1085;&#1072;&#1083;&#1099;</a>
+                    <a href="watch.html">&#1087;&#1083;&#1077;&#1077;&#1088;</a>
+                </div>
+            </div>
+
+            <div class="utility-drop" id="utility-panel" hidden>
+                <div class="utility-grid">
+                    <section class="utility-box">
+                        <div class="utility-title">&#1055;&#1086;&#1076;&#1087;&#1080;&#1089;&#1082;&#1080;</div>
+                        <form id="quick-add-form" class="utility-form">
+                            <input id="quick-add-input" type="text" placeholder="@handle &#1080;&#1083;&#1080; youtube.com/channel/UC...">
+                            <button type="submit">+</button>
+                        </form>
+                        <div id="utility-subscription-list" class="utility-sub-list"></div>
+                    </section>
+
+                    <section class="utility-box">
+                        <div class="utility-title">&#1048;&#1084;&#1087;&#1086;&#1088;&#1090;</div>
+                        <textarea id="quick-import-input" placeholder="subscriptions.csv &#1080;&#1083;&#1080; &#1089;&#1087;&#1080;&#1089;&#1086;&#1082; &#1089;&#1089;&#1099;&#1083;&#1086;&#1082; JSON"></textarea>
+                        <div class="utility-row">
+                            <button type="button" id="quick-import-btn">&#1048;&#1084;&#1087;&#1086;&#1088;&#1090;</button>
+                            <button type="button" id="quick-export-btn">Экспорт JSON</button>
+                            <button type="button" id="quick-refresh-btn">&#1054;&#1073;&#1085;&#1086;&#1074;&#1080;&#1090;&#1100;</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </header>
+
+        <div class="portal-layout watch-layout" id="watch-layout">
+            <main class="main-column watch-main-column" id="watch-main-column">
+                <section class="module-box watch-stage-box" id="watch-stage-box">
+                    <div class="module-head watch-stage-head">
+                        <h1 id="watch-title">&#1055;&#1088;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088; &#1074;&#1080;&#1076;&#1077;&#1086;</h1>
+                        <div class="watch-head-links">
+                            <a id="watch-youtube-link" href="#" target="_blank" rel="noopener noreferrer" class="module-link">youtube</a>
+                        </div>
+                    </div>
+                    <div class="watch-player-shell" id="watch-player-shell">
+                        <div class="watch-player-stage" id="watch-player-stage">
+                            <iframe
+                                id="watch-player-frame"
+                                title="TuuDay player"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        <div class="watch-controls-bar">
+                            <button type="button" class="watch-control-btn watch-play-btn" id="watch-play-toggle" aria-label="play or pause"></button>
+                            <button type="button" class="watch-control-btn watch-mute-btn" id="watch-mute-toggle" aria-label="mute"></button>
+                            <div class="watch-time-box">
+                                <span id="watch-current-time">00:00</span>
+                                <span class="watch-time-sep">/</span>
+                                <span id="watch-duration-time">00:00</span>
+                            </div>
+                            <div class="watch-progress-box">
+                                <div id="watch-progress-chapters" class="watch-progress-chapters"></div>
+                                <input type="range" id="watch-progress" min="0" max="1000" value="0" step="1" aria-label="seek video">
+                            </div>
+                            <div class="watch-volume-box">
+                                <input type="range" id="watch-volume" min="0" max="100" value="65" step="1" aria-label="volume">
+                            </div>
+                            <button type="button" class="watch-control-btn watch-theater-btn" id="watch-theater-toggle" aria-label="theater mode">&#1058;&#1077;&#1072;&#1090;&#1088;</button>
+                            <button type="button" class="watch-control-btn watch-fullscreen-btn" id="watch-fullscreen-toggle" aria-label="fullscreen"></button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-box watch-meta-section">
+                    <div class="watch-meta-block">
+                        <div id="watch-meta-line" class="watch-meta-line"></div>
+                        <div id="watch-description" class="watch-description"></div>
+                    </div>
+                </section>
+
+                <section class="module-box watch-meta-section watch-comments-section">
+                    <div class="module-head watch-comments-head">
+                        <h2>Комментарии</h2>
+                        <span class="module-note" id="watch-comments-note">загрузка...</span>
+                    </div>
+                    <div class="watch-meta-block">
+                        <div id="watch-comments" class="watch-comments"></div>
+                        <div class="channel-load-row">
+                            <button type="button" class="small-action" id="watch-comments-more" hidden>ещё комментарии</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="module-box watch-related-box">
+                    <div class="module-head">
+                        <h2>Еще с этого канала</h2>
+                        <a id="watch-channel-link" href="#" class="module-link">канал</a>
+                    </div>
+                    <div id="watch-channel-videos" class="dense-video-grid"></div>
+                </section>
+
+                <section class="module-box watch-side-channels">
+                    <div class="module-head">
+                        <h2>Случайные каналы</h2>
+                    </div>
+                    <div id="side-subscriptions" class="side-subscription-list"></div>
+                </section>
+            </main>
+
+            <aside class="side-column watch-side-column" id="watch-side-column">
+                <section class="watch-side-reference-shell">
+                    <div id="watch-side-details"></div>
+                </section>
+                <section class="module-box watch-side-recommendations">
+                    <div class="module-head">
+                        <h2>Похожее видео</h2>
+                    </div>
+                    <div id="watch-recommendations" class="side-video-list"></div>
+                </section>
+            </aside>
+        </div>
+
+        <footer class="portal-footer">
+            &copy; yuvisite, 2026
+        </footer>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="video.js"></script>
+</body>
+</html>

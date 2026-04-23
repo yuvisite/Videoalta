@@ -1,0 +1,13 @@
+{
+  "name": "tuuday",
+  "version": "1.0.0",
+  "description": "TuuDay Video MVP",
+  "main": "video-server.js",
+  "scripts": {
+    "start": "node video-server.js",
+    "dev": "node video-server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

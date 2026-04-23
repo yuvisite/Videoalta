@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>Каналы - Videoalta</title>
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="stylesheet" href="video.css">
+</head>
+<body data-page="subscriptions">
+    <script>try{var t=localStorage.getItem('tuuday-theme')||localStorage.getItem('tuuday-video-theme')||'';if(!t&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)t='dark';if(t==='dark')document.body.classList.add('theme-dark');document.body.dataset.theme=t==='dark'?'dark':'light';}catch(e){}</script>
+    <div class="portal-shell">
+        <header class="portal-head">
+            <div class="portal-topline">
+                <a class="brand-badge" href="index.html">Videoalta</a>
+                <nav class="portal-nav">
+                    <a href="index.html">видео</a>
+                    <a href="search.html">поиск</a>
+                    <a href="watch.html">просмотр</a>
+                </nav>
+                <div class="portal-head-actions">
+                    <button class="small-action" type="button" id="utility-toggle">Настройки</button>
+                </div>
+            </div>
+
+            <div class="portal-searchline">
+                <form action="search.html" class="portal-searchform">
+                    <input type="text" name="q" id="mast-search-input" placeholder="поиск видео">
+                    <button type="submit">Поиск</button>
+                </form>
+                <div class="portal-links">
+                    <a href="index.html">главная</a>
+                    <a href="subscriptions.html">каналы</a>
+                    <a href="watch.html">плеер</a>
+                </div>
+            </div>
+
+            <div class="utility-drop" id="utility-panel" hidden>
+                <div class="utility-grid">
+                    <section class="utility-box">
+                        <div class="utility-title">Подписки</div>
+                        <form id="quick-add-form" class="utility-form">
+                            <input id="quick-add-input" type="text" placeholder="@handle или youtube.com/channel/UC...">
+                            <button type="submit">+</button>
+                        </form>
+                        <div id="utility-subscription-list" class="utility-sub-list"></div>
+                    </section>
+
+                    <section class="utility-box">
+                        <div class="utility-title">Импорт</div>
+                        <textarea id="quick-import-input" placeholder="subscriptions.csv, список ссылок или JSON"></textarea>
+                        <div class="utility-row">
+                            <button type="button" id="quick-import-btn">Импорт</button>
+                            <button type="button" id="quick-export-btn">Экспорт JSON</button>
+                            <button type="button" id="quick-refresh-btn">Обновить</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </header>
+
+        <div class="portal-layout search-layout channel-layout">
+            <main class="main-column">
+                <section class="module-box">
+                    <div class="module-head">
+                        <h1>Список подписок</h1>
+                        <span class="module-note" id="subscriptions-page-status">0 каналов</span>
+                    </div>
+                    <div id="subscriptions-page-list" class="channel-wall"></div>
+                </section>
+            </main>
+
+            <aside class="side-column">
+                <section class="module-box">
+                    <div class="module-head">
+                        <h2>Из вашей ленты</h2>
+                    </div>
+                    <div id="subscriptions-side-latest" class="side-video-list"></div>
+                </section>
+
+                <section class="module-box">
+                    <div class="module-head">
+                        <h2>Случайные каналы</h2>
+                    </div>
+                    <div id="side-subscriptions" class="side-subscription-list"></div>
+                </section>
+            </aside>
+        </div>
+
+        <footer class="portal-footer">
+            &copy; yuvisite, 2026
+        </footer>
+    </div>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="video.js"></script>
+</body>
+</html>
